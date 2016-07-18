@@ -1,0 +1,41 @@
+#
+# .screenrc
+#
+
+# General
+#
+
+startup_message off
+autodetach on
+vbell off
+defscrollback 100000
+
+altscreen off
+term xterm-256color
+termcapinfo xterm* 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+termcapinfo xterm*|rxvt*|kterm*|Eterm*|screen*|xs ti@:te@
+attrcolor b ".I"
+
+hardstatus alwayslastline "%-w %{= wk}%n%f* %t%{-} %+w"
+caption splitonly "%3n %t %f"
+pow_detach_msg "Screen session of $LOGNAME $:cr:$:nl:ended."
+
+
+#defencoding UTF-8
+#defcharset UTF-8
+#defutf8 on
+
+# Keybindings
+#
+
+escape ^Aa
+
+# in case these settings are not already on that system
+bind ^k
+#bind L
+bind ^\
+bind \\ quit
+bind K kill
+bind I login on
+bind O login off
+bind } history
