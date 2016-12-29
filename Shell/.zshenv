@@ -22,7 +22,7 @@ LOCALE_FOUND=0
 
 for LOLALE_PREFERENCE in $LOLALE_PREFERENCES
 do
-	if echo $locales | /usr/bin/grep -i $LOLALE_PREFERENCE &> /dev/null
+	if echo $locales | grep -i $LOLALE_PREFERENCE &> /dev/null
 	then
 		export LANG=ja_JP.UTF-8
 		export LANGUAGE=ja

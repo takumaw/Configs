@@ -86,6 +86,8 @@ setopt MAGIC_EQUAL_SUBST
 
 setopt CORRECT
 
+zstyle ':completion:*' rehash true
+
 zstyle ':completion:*' verbose yes
 #zstyle ':completion:*' extra-verbose true
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
@@ -112,6 +114,7 @@ alias vi="vim"
 alias untar="tar -xvf"
 function mktar () { tar -czvf $@[-1] $@[1,-2] }
 alias rsync="rsync -v --progress -a --inplace --append --partial"
+alias sshfs="sshfs -C -o"
 
 
 # environment-specific
@@ -131,15 +134,17 @@ darwin*)
     alias pp="ps -A -w -o user,pid,%cpu,vsz,nice,stat,tty,command"
     
     alias rsync="rsync -v --progress -a --inplace --append --partial --iconv=UTF8-MAC,UTF-8"
-    alias rsync-raw="rsync -v --progress -a --inplace --append --partial"
     alias sshfs="sshfs -C -o modules=iconv,from_code=UTF-8,to_code=UTF-8-Mac"
     function pbpopd() { cd `pbpaste` }
-    function pbpushd() { pwd | pbcopy }
-    alias pbcd=pbpushd
+    function pbpushd() { pwd | pbcopy; cd $@ }
+    alias pbcd=pbpopd
 
-    if brew command command-not-found-init > /dev/null; then eval "$(brew command-not-found-init)"; fi
+    if brew command command-not-found-init &> /dev/null
+    then
+        eval "$(brew command-not-found-init)"
+    fi
     source /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh
-	;;
+    ;;
 linux*)
     alias ll="ls -lhAF --color"
     function chpwd() { ls --color }
@@ -149,19 +154,31 @@ linux*)
     alias pbcopy='xsel --clipboard --input'
     alias pbpaste='xsel --clipboard --output'
     function pbpopd() { cd `pbpaste` }
-    function pbpushd() { pwd | pbcopy }
-    alias pbcd=pbpushd
+    function pbpushd() { pwd | pbcopy; cd $@ }
+    alias pbcd=pbpopd
 
     source /etc/zsh_command_not_found &> /dev/null
     source /etc/bash_completion.d/git-prompt &> /dev/null
-	source /usr/share/git-core/contrib/completion/git-prompt.sh &> /dev/null
+    source /usr/share/git-core/contrib/completion/git-prompt.sh &> /dev/null
     ;;
-*bsd*|solaris*)
+*bsd)
     alias ll="ls -lhAF -G"
     function chpwd() { ls -G }
     alias pp="ps -A -o user,pid,pcpu,vsz,nice,s,tty,args"
 
-    if which xdg-open;
+    if which xdg-open &> /dev/null
+    then
+        alias open=xdg-open
+    else
+        alias open=gnome-open
+    fi
+    ;;
+solaris*)
+    alias ll="ls -lhAF -G"
+    function chpwd() { ls -G }
+    alias pp="ps -A -o user,pid,pcpu,vsz,nice,s,tty,args"
+
+    if which xdg-open &> /dev/null
     then
         alias open=xdg-open
     else
