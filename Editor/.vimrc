@@ -5,7 +5,6 @@
 " general
 "
 
-"set nocompatible
 set showcmd
 set showmode
 
@@ -50,6 +49,9 @@ set completeopt=menu,menuone,preview
 
 set dictionary+=/usr/share/dict/words
 
+set expandtab
+set shiftwidth=4
+set softtabstop=4
 
 " searching
 "
@@ -70,9 +72,3 @@ nnoremap <silent> <PageDown> <C-D><C-D>
 vnoremap <silent> <PageDown> <C-D><C-D>
 inoremap <silent> <PageDown> <C-\><C-O><C-D><C-\><C-O><C-D>
 
-" filetype-specific
-"
-
-filetype plugin on
-autocmd FileType html setlocal shiftwidth=2 tabstop=2
-autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
