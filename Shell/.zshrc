@@ -132,7 +132,7 @@ darwin*)
     alias ll="ls -lhAF -G"
     function chpwd() { ls -G }
     alias pp="ps -A -w -o user,pid,%cpu,vsz,nice,stat,tty,command"
-    
+
     alias rsync="rsync -v --progress -a --inplace --append --partial --iconv=UTF8-MAC,UTF-8"
     alias sshfs="sshfs -C -o modules=iconv,from_code=UTF-8,to_code=UTF-8-Mac"
     function pbpopd() { cd `pbpaste` }
@@ -226,12 +226,6 @@ then
   precmd () {
     RPROMPT='%S$(__git_ps1 "[%s]")%s'
   }
-fi
-
-if which gcloud &> /dev/null
-then
-	source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
-	source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
 fi
 
 
