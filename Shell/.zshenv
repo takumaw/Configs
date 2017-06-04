@@ -19,7 +19,6 @@ for LOLALE_PREFERENCE in $LOLALE_PREFERENCES
 do
     if echo $locales | grep -i $LOLALE_PREFERENCE &> /dev/null
     then
-        echo $LOLALE_PREFERENCE
         export LANG=$LOLALE_PREFERENCE
         export LANGUAGE=`echo $LOLALE_PREFERENCE | cut -d "_" -f 1`
         LOCALE_FOUND=1
