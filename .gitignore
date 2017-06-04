@@ -1,4 +1,9 @@
 #
+# .Gitignore
+# c.f.: https://github.com/github/gitignore/tree/master/Global
+#
+
+#
 # macOS
 #
 
@@ -90,4 +95,13 @@ Session.vim
 *~
 # auto-generated tag files
 tags
+
+
+#
+# TextMate
+#
+
+*.tmproj
+*.tmproject
+tmtags
 
