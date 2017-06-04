@@ -1,0 +1,6 @@
+# Ignore everything (including private keys)
+*
+
+# ...except those excplicitly allowd.
+!.gitignore
+#!config
