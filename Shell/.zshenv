@@ -2,11 +2,6 @@
 # .zshenv
 #
 
-# essential
-#
-
-#umask 022
-
 
 # locale
 #
@@ -18,15 +13,17 @@ LOLALE_PREFERENCES=(
     "en_US.UTF-8"
     "en_US.UTF8"
 )
-LOCALE_FOUND=0
 
+LOCALE_FOUND=0
 for LOLALE_PREFERENCE in $LOLALE_PREFERENCES
 do
     if echo $locales | grep -i $LOLALE_PREFERENCE &> /dev/null
     then
+        echo $LOLALE_PREFERENCE
         export LANG=$LOLALE_PREFERENCE
         export LANGUAGE=`echo $LOLALE_PREFERENCE | cut -d "_" -f 1`
         LOCALE_FOUND=1
+        break
     fi
 done
 if test $LOCALE_FOUND -eq 0
@@ -56,7 +53,8 @@ then
     export PATH=$GOPATH/bin:$PATH
 fi
 
-# os specific
+
+# environment-specific
 #
 
 case $OSTYPE in
@@ -67,7 +65,7 @@ darwin*)
         /usr/local/share/zsh/vendor-completions
         $fpath
     )
-    
+
     export JAVA_HOME=`/usr/libexec/java_home`
     ;;
 linux*)
@@ -75,7 +73,7 @@ linux*)
     emulate -L ksh
     source /etc/profile
     emulate zsh
-    
+
     if type java &> /dev/null
     then
         export JAVA_HOME=$(dirname $(dirname $(readlink -f /usr/bin/java)))
@@ -86,7 +84,7 @@ linux*)
     emulate -L ksh
     source /etc/profile
     emulate zsh
-    
+
     if type java &> /dev/null
     then
         export JAVA_HOME=$(dirname $(dirname $(readlink -f /usr/bin/java)))
@@ -94,7 +92,8 @@ linux*)
     ;;
 esac
 
-# includings
+
+# includes
 #
 
 env_files=(~/.zshenv.*(N))

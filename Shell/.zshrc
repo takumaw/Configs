@@ -149,7 +149,7 @@ linux*)
     alias ll="ls -lhAF --color"
     function chpwd() { ls --color }
     alias pp="ps -A -w -o user,pid,%cpu,vsz,nice,stat,tty,command"
-    
+
     alias open=xdg-open
     alias pbcopy='xsel --clipboard --input'
     alias pbpaste='xsel --clipboard --output'
@@ -191,18 +191,16 @@ cygwin*)
     alias pp="ps -A -w -o user,pid,%cpu,vsz,nice,stat,tty,command"
 
     alias open=cygstart
-    alias ping="cocot /cygdrive/c/Windows/System32/PING.EXE"
-    alias ipconfig="cocot cocot /cygdrive/c/Windows/System32/ipconfig.exe"
-    alias netstat="cocot cocot /cygdrive/c/Windows/System32/NETSTAT.EXE"
-    alias netsh="cocot cocot /cygdrive/c/Windows/System32/netsh.exe"
-    alias nslookup="cocot cocot /cygdrive/c/Windows/System32/nslookup.exe"
-    alias traceroute="cocot cocot /cygdrive/c/Windows/System32/tracert.exe"
-    alias route="cocot cocot /cygdrive/c/Windows/System32/ROUTE.EXE"
-    alias arp="cocot cocot /cygdrive/c/Windows/System32/ARP.EXE"
-    alias cscript="cocot cocot /cygdrive/c/Windows/System32/cscript.exe"
     alias sudo="cygstart --action=runas"
-
-    #source /usr/local/share/git-core/contrib/completion/git-prompt.sh &> /dev/null
+    alias ping="cocot /cygdrive/c/Windows/System32/PING.EXE"
+    alias ipconfig="cocot /cygdrive/c/Windows/System32/ipconfig.exe"
+    alias netstat="cocot /cygdrive/c/Windows/System32/NETSTAT.EXE"
+    alias netsh="cocot /cygdrive/c/Windows/System32/netsh.exe"
+    alias nslookup="cocot /cygdrive/c/Windows/System32/nslookup.exe"
+    alias traceroute="cocot /cygdrive/c/Windows/System32/tracert.exe"
+    alias route="cocot /cygdrive/c/Windows/System32/ROUTE.EXE"
+    alias arp="cocot /cygdrive/c/Windows/System32/ARP.EXE"
+    alias cscript="cocot /cygdrive/c/Windows/System32/cscript.exe"
     ;;
 *)
     alias ll="ls -lhAF"
@@ -222,7 +220,7 @@ then
   GIT_PS1_SHOWUPSTREAM="auto"
   GIT_PS1_DESCRIBE_STYLE="default"
   GIT_PS1_SHOWCOLORHINTS=1
-  
+
   precmd () {
     RPROMPT='%S$(__git_ps1 "[%s]")%s'
   }
