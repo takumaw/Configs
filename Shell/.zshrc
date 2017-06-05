@@ -231,3 +231,13 @@ fi
 #
 
 #export REPORTTIME=0
+
+
+# includes
+#
+
+rc_files=(~/.zshrc.*(N))
+for rc_file in $rc_files
+do
+    source $rc_file
+done
