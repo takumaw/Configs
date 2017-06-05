@@ -33,6 +33,8 @@ escape ^Aa
 # in case these settings are not already on that system
 bind ^k
 #bind L
+bind "]" next
+bind "[" prev
 bind ^\
 bind \\ quit
 bind K kill

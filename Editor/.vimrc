@@ -14,7 +14,7 @@ set showmode
 set encoding=utf-8
 "set termencoding=utf-8
 set fileencoding=utf-8 " used for writing
-set fileencodings=iso-2022-jp,euc-jp,sjis,ucs-bom,utf-8 " used for reading
+"set fileencodings=iso-2022-jp,euc-jp,sjis,ucs-bom,utf-8 " used for reading
 set fileformat=unix " used for writing
 set fileformats=dos,mac,unix " used for reading
 set nobomb " disable utf-8 with BOM
@@ -71,4 +71,3 @@ inoremap <silent> <PageUp> <C-\><C-O><C-U><C-\><C-O><C-U>
 nnoremap <silent> <PageDown> <C-D><C-D>
 vnoremap <silent> <PageDown> <C-D><C-D>
 inoremap <silent> <PageDown> <C-\><C-O><C-D><C-\><C-O><C-D>
-
