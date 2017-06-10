@@ -13,11 +13,10 @@ set showmode
 
 set encoding=utf-8
 "set termencoding=utf-8
-set fileencoding=utf-8 " used for writing
-"set fileencodings=iso-2022-jp,euc-jp,sjis,ucs-bom,utf-8 " used for reading
-set fileformat=unix " used for writing
-set fileformats=dos,mac,unix " used for reading
-set nobomb " disable utf-8 with BOM
+"set fileencoding=utf-8 " used for writing
+"set fileformat=unix " used for writing
+"set fileformats=unix,dos " used for reading
+"set nobomb " disable utf-8 with BOM
 
 " viewing
 "
