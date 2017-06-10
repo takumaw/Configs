@@ -236,8 +236,8 @@ fi
 # includes
 #
 
-rc_files=(~/.zshrc.*(N))
-for rc_file in $rc_files
+include_files=(~/.zshrc.*(N))
+for include_file in $include_files
 do
-    source $rc_file
+    source $include_file
 done

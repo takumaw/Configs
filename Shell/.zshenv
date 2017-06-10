@@ -95,8 +95,8 @@ esac
 # includes
 #
 
-env_files=(~/.zshenv.*(N))
-for env_file in $env_files
+include_files=(~/.zshenv.*(N))
+for include_file in $include_files
 do
-    source $env_file
+    source $include_file
 done
