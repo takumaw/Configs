@@ -226,6 +226,12 @@ then
   }
 fi
 
+if type python3 &> /dev/null
+then
+  alias python=python3
+  alias pip=pip3
+fi
+
 
 # misc
 #
