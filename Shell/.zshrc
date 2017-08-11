@@ -229,7 +229,10 @@ fi
 if type python3 &> /dev/null
 then
   alias python=python3
+  alias pydoc=pydoc3
   alias pip=pip3
+  alias idle=idle3
+  alias ipython=ipython3
 fi
 
 
