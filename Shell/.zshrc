@@ -114,7 +114,6 @@ alias vi="vim"
 alias untar="tar -xvf"
 function mktar () { tar -czvf $@[-1] $@[1,-2] }
 alias rsync="rsync -v --progress -a --inplace --append --partial"
-alias sshfs="sshfs -C -o"
 
 
 # environment-specific
@@ -133,8 +132,6 @@ darwin*)
   function chpwd() { ls -G }
   alias pp="ps -A -w -o user,pid,%cpu,vsz,nice,stat,tty,command"
 
-  alias rsync="rsync -v --progress -a --inplace --append --partial --iconv=UTF8-MAC,UTF-8"
-  alias sshfs="sshfs -C -o modules=iconv,from_code=UTF-8,to_code=UTF-8-Mac"
   function pbpopd() { cd `pbpaste` }
   function pbpushd() { pwd | pbcopy; cd $@ }
   alias pbcd=pbpopd
