@@ -1,11 +1,12 @@
 [core]
-	excludesfile = ~/.gitignore_global
+	excludesfile = /Users/takumaw/.gitignore_global
 [user]
 	name = Takuma Watanabe
 	email = takumaw@sfo.kuramae.ne.jp
 	signingkey = 73065648
 [commit]
 	gpgSign = true
+	template = /Users/takumaw/.stCommitMsg
 [credential]
 	helper = osxkeychain
 [status]
@@ -13,13 +14,13 @@
 [transfer]
 	fsckobjects = true
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
+	path = 
 [mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
