@@ -3,7 +3,8 @@
 #
 
 
-# general
+#
+# General
 #
 
 PROMPT="%S%n@%M (ret: %?, %j jobs)%s
@@ -18,7 +19,8 @@ unsetopt HUP
 setopt NOTIFY
 
 
-# history
+#
+# History
 #
 
 HISTFILE=~/.zsh_history
@@ -32,15 +34,8 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_REDUCE_BLANKS
 
 
-# editor/viewer
 #
-
-export EDITOR=vim
-export PAGER=less
-export LESS="--RAW-CONTROL-CHARS"
-
-
-# line editor
+# Line editor
 #
 
 unsetopt FLOW_CONTROL
@@ -67,7 +62,8 @@ bindkey "^[[A" history-beginning-search-backward-end
 bindkey "^[[B" history-beginning-search-forward-end
 
 
-# completion
+#
+# Completion
 #
 
 autoload -U compinit
@@ -98,7 +94,8 @@ zstyle ':completion:*' list-prompt ''
 zstyle ':completion:*' select-prompt ''
 
 
-# commands
+#
+# Commands
 #
 
 setopt AUTO_PUSHD
@@ -116,7 +113,8 @@ function mktar () { tar -czvf $@[-1] $@[1,-2] }
 alias rsync="rsync -v --progress -a --inplace --append --partial"
 
 
-# environment-specific
+#
+# Environment-specific
 #
 
 case $TERM in
@@ -140,33 +138,41 @@ darwin*)
   then
     eval "$(brew command-not-found-init)"
   fi
-  source /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh
   ;;
 linux*)
   alias ll="ls -lhAF --color"
   function chpwd() { ls --color }
   alias pp="ps -A -w -o user,pid,%cpu,vsz,nice,stat,tty,command"
 
-  alias open=xdg-open
-  alias pbcopy='xsel --clipboard --input'
-  alias pbpaste='xsel --clipboard --output'
-  function pbpopd() { cd `pbpaste` }
-  function pbpushd() { pwd | pbcopy; cd $@ }
-  alias pbcd=pbpopd
+  if type xdg-open &> /dev/null
+  then
+    alias open=xdg-open
+  elif type gnome-open &> /dev/null
+  then
+    alias open=gnome-open
+  fi
+
+  if type xsel &> /dev/null
+  then
+    alias pbcopy='xsel --clipboard --input'
+    alias pbpaste='xsel --clipboard --output'
+    function pbpopd() { cd `pbpaste` }
+    function pbpushd() { pwd | pbcopy; cd $@ }
+    alias pbcd=pbpopd
+  fi
 
   source /etc/zsh_command_not_found &> /dev/null
-  source /etc/bash_completion.d/git-prompt &> /dev/null
-  source /usr/share/git-core/contrib/completion/git-prompt.sh &> /dev/null
   ;;
 *bsd)
   alias ll="ls -lhAF -G"
   function chpwd() { ls -G }
   alias pp="ps -A -o user,pid,pcpu,vsz,nice,s,tty,args"
 
-  if which xdg-open &> /dev/null
+  if type xdg-open &> /dev/null
   then
     alias open=xdg-open
-  else
+  elif type gnome-open &> /dev/null
+  then
     alias open=gnome-open
   fi
   ;;
@@ -175,10 +181,11 @@ solaris*)
   function chpwd() { ls -G }
   alias pp="ps -A -o user,pid,pcpu,vsz,nice,s,tty,args"
 
-  if which xdg-open &> /dev/null
+  if type xdg-open &> /dev/null
   then
     alias open=xdg-open
-  else
+  elif type gnome-open &> /dev/null
+  then
     alias open=gnome-open
   fi
   ;;
@@ -189,15 +196,19 @@ cygwin*)
 
   alias open=cygstart
   alias sudo="cygstart --action=runas"
-  alias ping="cocot /cygdrive/c/Windows/System32/PING.EXE"
-  alias ipconfig="cocot /cygdrive/c/Windows/System32/ipconfig.exe"
-  alias netstat="cocot /cygdrive/c/Windows/System32/NETSTAT.EXE"
-  alias netsh="cocot /cygdrive/c/Windows/System32/netsh.exe"
-  alias nslookup="cocot /cygdrive/c/Windows/System32/nslookup.exe"
-  alias traceroute="cocot /cygdrive/c/Windows/System32/tracert.exe"
-  alias route="cocot /cygdrive/c/Windows/System32/ROUTE.EXE"
-  alias arp="cocot /cygdrive/c/Windows/System32/ARP.EXE"
-  alias cscript="cocot /cygdrive/c/Windows/System32/cscript.exe"
+
+  if type cocot &> /dev/null
+  then
+    alias ping="cocot /cygdrive/c/Windows/System32/PING.EXE"
+    alias ipconfig="cocot /cygdrive/c/Windows/System32/ipconfig.exe"
+    alias netstat="cocot /cygdrive/c/Windows/System32/NETSTAT.EXE"
+    alias netsh="cocot /cygdrive/c/Windows/System32/netsh.exe"
+    alias nslookup="cocot /cygdrive/c/Windows/System32/nslookup.exe"
+    alias traceroute="cocot /cygdrive/c/Windows/System32/tracert.exe"
+    alias route="cocot /cygdrive/c/Windows/System32/ROUTE.EXE"
+    alias arp="cocot /cygdrive/c/Windows/System32/ARP.EXE"
+    alias cscript="cocot /cygdrive/c/Windows/System32/cscript.exe"
+  fi
   ;;
 *)
   alias ll="ls -lhAF"
@@ -207,20 +218,37 @@ cygwin*)
 esac
 
 
-# development
+#
+# Viewer & Editor
 #
 
-if __git_ps1 &> /dev/null
-then
-  GIT_PS1_SHOWDIRTYSTATE=1
-  GIT_PS1_SHOWSTASHSTATE=1
-  GIT_PS1_SHOWUPSTREAM="auto"
-  GIT_PS1_DESCRIBE_STYLE="default"
-  GIT_PS1_SHOWCOLORHINTS=1
+export EDITOR=vim
+export PAGER=less
+export LESS="--RAW-CONTROL-CHARS"
 
-  precmd () {
-    RPROMPT='%S$(__git_ps1 "[%s]")%s'
-  }
+
+#
+# Development
+#
+
+if type git &> /dev/null
+then
+  source /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh &> /dev/null # macOS
+  source /etc/bash_completion.d/git-prompt &> /dev/null # Ubuntu
+  source /usr/share/git-core/contrib/completion/git-prompt.sh &> /dev/null # CentOS
+
+  if __git_ps1 &> /dev/null
+  then
+    GIT_PS1_SHOWDIRTYSTATE=1
+    GIT_PS1_SHOWSTASHSTATE=1
+    GIT_PS1_SHOWUPSTREAM="auto"
+    GIT_PS1_DESCRIBE_STYLE="default"
+    GIT_PS1_SHOWCOLORHINTS=1
+
+    precmd () {
+      RPROMPT='%S$(__git_ps1 "[%s]")%s'
+    }
+  fi
 fi
 
 if type python3 &> /dev/null
@@ -233,16 +261,23 @@ then
 fi
 
 
-# misc
+#
+# Miscellaneous
 #
 
 #export REPORTTIME=0
 
 
-# includes
+#
+# Includes
 #
 
-include_files=(~/.zshrc.*(N))
+include_files=(
+  ~/.zsh/zshrc/*(.N)
+  ~/.zshrc.d/*(.N)
+  ~/.zshrc.*(.N)
+)
+
 for include_file in $include_files
 do
     source $include_file
