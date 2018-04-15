@@ -7,12 +7,10 @@
 [commit]
 	gpgSign = true
 	template = /Users/takumaw/.stCommitMsg
-[credential]
-	helper = osxkeychain
 [status]
 	showUntrackedFiles = all
 [transfer]
-	fsckobjects = true
+	fsckObjects = true
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
