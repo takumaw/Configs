@@ -237,7 +237,7 @@ then
   source /etc/bash_completion.d/git-prompt &> /dev/null # Ubuntu
   source /usr/share/git-core/contrib/completion/git-prompt.sh &> /dev/null # CentOS
 
-  if __git_ps1 &> /dev/null
+  if type __git_ps1 &> /dev/null
   then
     GIT_PS1_SHOWDIRTYSTATE=1
     GIT_PS1_SHOWSTASHSTATE=1
