@@ -1,9 +1,9 @@
 [core]
-	excludesfile = /Users/takumaw/.gitignore_global
+	excludesFile = /Users/takumaw/.gitignore_global
 [user]
 	name = Takuma Watanabe
 	email = takumaw@sfo.kuramae.ne.jp
-	signingkey = 0CC49C7EF2A82A0BA7424758A6B2264573065648
+	signingKey = 0CC49C7EF2A82A0BA7424758A6B2264573065648
 [commit]
 	gpgSign = true
 	template = /Users/takumaw/.stCommitMsg
