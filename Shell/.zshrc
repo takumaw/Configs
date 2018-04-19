@@ -54,10 +54,8 @@ zstyle ':zle:*' word-chars " $%&@+*|/\\\"'\`~=-;:,.!?{}[]()"
 zstyle ':zle:*' word-style unspecified
 
 autoload -U history-search-end
-zle -N history-beginning-search-backward-end \
-       history-search-end
-zle -N history-beginning-search-forward-end \
-       history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
 bindkey "^[[A" history-beginning-search-backward-end
 bindkey "^[[B" history-beginning-search-forward-end
 
@@ -107,7 +105,6 @@ alias sudo='sudo ' # enable aliases in sudo
 alias rm="rm -vi"
 alias mv="mv -vi"
 alias cp="cp -vi"
-alias vi="vim"
 alias untar="tar -xvf"
 function mktar () { tar -czvf $@[-1] $@[1,-2] }
 alias rsync="rsync -v --progress -a --inplace --append --partial"
@@ -130,7 +127,7 @@ darwin*)
   function chpwd() { ls -G }
   alias pp="ps -A -w -o user,pid,%cpu,vsz,nice,stat,tty,command"
 
-  function pbpopd() { cd `pbpaste` }
+  function pbpopd() { cd "`pbpaste`" }
   function pbpushd() { pwd | pbcopy; cd $@ }
   alias pbcd=pbpopd
 
@@ -222,9 +219,17 @@ esac
 # Viewer & Editor
 #
 
+if type vim &> /dev/null
+then
+  alias vi="vim"
+else
+  alias vim="vi"
+fi
+
 export EDITOR=vim
 export PAGER=less
 export LESS="--RAW-CONTROL-CHARS"
+export LV="-c"
 
 
 #
@@ -273,8 +278,7 @@ fi
 #
 
 include_files=(
-  ~/.zsh/zshrc/*(.N)
-  ~/.zshrc.d/*(.N)
+  ~/.zsh.d/zshrc/*(.N)
   ~/.zshrc.*(.N)
 )
 
