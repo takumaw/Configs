@@ -4,6 +4,47 @@
 
 
 #
+# Global
+#
+
+if [[ ! $OSTYPE =~ "darwin" ]]
+then
+  unsetopt GLOBAL_RCS
+  emulate -L ksh
+  source /etc/profile
+  emulate zsh
+fi
+
+
+#
+# Paths
+#
+
+typeset -U path
+path=(
+  ~/.local/bin(/N)
+  $PATH
+)
+export PATH
+
+typeset -U manpath
+manpath=(
+  ~/.local/share/man(/N)
+  $manpath
+)
+
+typeset -U fpath
+fpath=(
+  /usr/local/share/zsh/site-functions(/N)
+  /usr/local/share/zsh/vendor-completions(/N)
+  /usr/local/share/zsh-completions(/N)
+  /usr/share/zsh/site-functions(/N)
+  /usr/share/zsh/vendor-completions(/N)
+  $fpath
+)
+
+
+#
 # Locale
 #
 
@@ -29,53 +70,43 @@ done
 
 
 #
-# Paths
+# Development Tools
 #
 
-export PATH=~/.local/bin:$PATH
-export MANPATH=~/.local/share/man:$MANPATH
+# typeset -TU LIBRARY_PATH library_path
+# library_path=(
+#   ~/.local/lib
+#   $library_path
+# )
+# export LIBRARY_PATH
 
-export LIBRARY_PATH=~/.local/lib:$LIBRARY_PATH
-export LD_LIBRARY_PATH=~/.local/lib:$LD_LIBRARY_PATH
-export INCLUDE_PATH=~/.local/include:$INCLUDE_PATH
-export C_INCLUDE_PATH=~/.local/include:$C_INCLUDE_PATH
-export CPLUS_INCLUDE_PATH=~/.local/include:$CPLUS_INCLUDE_PATH
+# typeset -TU LD_LIBRARY_PATH ld_library_path
+# ld_library_path=(
+#   ~/.local/lib
+#   $ld_library_path
+# )
+# export LD_LIBRARY_PATH
 
+# typeset -TU INCLUDE_PATH include_path
+# include_path=(
+#   ~/.local/include
+#   $include_path
+# )
+# export INCLUDE_PATH
 
-#
-# Environment-specific
-#
+# typeset -TU C_INCLUDE_PATH c_include_path
+# c_include_path=(
+#   ~/.local/include
+#   $c_include_path
+# )
+# export C_INCLUDE_PATH
 
-case $OSTYPE in
-darwin*)
-  if type brew &> /dev/null
-  then
-    fpath=(
-      /usr/local/share/zsh-completions
-      /usr/local/share/zsh/site-functions
-      /usr/local/share/zsh/vendor-completions
-      $fpath
-    )
-  fi
-  ;;
-linux*)
-  unsetopt GLOBAL_RCS
-  emulate -L ksh
-  source /etc/profile
-  emulate zsh
-  ;;
-*)
-  unsetopt GLOBAL_RCS
-  emulate -L ksh
-  source /etc/profile
-  emulate zsh
-  ;;
-esac
-
-
-#
-# Development
-#
+# typeset -TU CPLUS_INCLUDE_PATH cplus_include_path
+# cplus_include_path=(
+#   ~/.local/include
+#   $cplus_include_path
+# )
+# export CPLUS_INCLUDE_PATH
 
 if (type python3 || type python2 || type python) &> /dev/null
 then
@@ -95,7 +126,7 @@ then
     # macOS
     export JAVA_HOME=`/usr/libexec/java_home`
   else
-    # Linux
+    # Others
     export JAVA_HOME=$(dirname $(dirname $(readlink -f /usr/bin/java)))
   fi
 fi
