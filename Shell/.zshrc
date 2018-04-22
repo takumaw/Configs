@@ -300,6 +300,7 @@ esac
 include_files=(
   ~/.zsh.d/zshrc/*(.N)
   ~/.zshrc.*(.N)
+  ~/.zshrc_*(.N)
   ~/.zshrc-*(.N)
 )
 

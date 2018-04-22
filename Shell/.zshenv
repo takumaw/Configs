@@ -139,6 +139,7 @@ fi
 include_files=(
   ~/.zsh.d/zshenv/*(.N)
   ~/.zshenv.*(.N)
+  ~/.zshenv_*(.N)
   ~/.zshenv-*(.N)
 )
 
