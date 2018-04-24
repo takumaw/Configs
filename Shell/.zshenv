@@ -23,7 +23,7 @@ fi
 typeset -U path
 path=(
   ~/.local/bin(/N)
-  $PATH
+  $path
 )
 export PATH
 
