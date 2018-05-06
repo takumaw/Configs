@@ -25,7 +25,6 @@ path=(
   ~/.local/bin(/N)
   $path
 )
-export PATH
 
 typeset -U manpath
 manpath=(
@@ -116,7 +115,7 @@ fi
 if type go &> /dev/null
 then
   export GOPATH=~/.go
-  export PATH=$GOPATH/bin:$PATH
+  path=($GOPATH/bin $path)
 fi
 
 if type java &> /dev/null
