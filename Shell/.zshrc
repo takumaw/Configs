@@ -152,41 +152,7 @@ export LV="-c"
 
 
 #
-# Developer Tools
-#
-
-if type git &> /dev/null
-then
-  source /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh &> /dev/null # macOS
-  source /etc/bash_completion.d/git-prompt &> /dev/null # Ubuntu
-  source /usr/share/git-core/contrib/completion/git-prompt.sh &> /dev/null # CentOS
-
-  if type __git_ps1 &> /dev/null
-  then
-    GIT_PS1_SHOWDIRTYSTATE=1
-    GIT_PS1_SHOWSTASHSTATE=1
-    GIT_PS1_SHOWUPSTREAM="auto"
-    GIT_PS1_DESCRIBE_STYLE="default"
-    GIT_PS1_SHOWCOLORHINTS=1
-
-    precmd () {
-      RPROMPT='%S$(__git_ps1 "[%s]")%s'
-    }
-  fi
-fi
-
-if type python3 &> /dev/null
-then
-  alias python=python3
-  alias pydoc=pydoc3
-  alias pip=pip3
-  alias idle=idle3
-  alias ipython=ipython3
-fi
-
-
-#
-# Environment-specific
+# Terminal-specific
 #
 
 case $TERM in
@@ -195,6 +161,11 @@ screen*)
   function precmd() { echo -ne "\ek${SHELL:t}\e\\" }
   ;;
 esac
+
+
+#
+# Environment-specific
+#
 
 case $OSTYPE in
 darwin*)
@@ -291,6 +262,40 @@ cygwin*)
   alias pp="ps -A -o user,pid,pcpu,vsz,nice,s,tty,args"
   ;;
 esac
+
+
+#
+# Developing-related
+#
+
+if type git &> /dev/null
+then
+  source /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh &> /dev/null # macOS
+  source /etc/bash_completion.d/git-prompt &> /dev/null # Ubuntu
+  source /usr/share/git-core/contrib/completion/git-prompt.sh &> /dev/null # CentOS
+
+  if type __git_ps1 &> /dev/null
+  then
+    GIT_PS1_SHOWDIRTYSTATE=1
+    GIT_PS1_SHOWSTASHSTATE=1
+    GIT_PS1_SHOWUPSTREAM="auto"
+    GIT_PS1_DESCRIBE_STYLE="default"
+    GIT_PS1_SHOWCOLORHINTS=1
+
+    precmd () {
+      RPROMPT='%S$(__git_ps1 "[%s]")%s'
+    }
+  fi
+fi
+
+if type python3 &> /dev/null
+then
+  alias python=python3
+  alias pydoc=pydoc3
+  alias pip=pip3
+  alias idle=idle3
+  alias ipython=ipython3
+fi
 
 
 #
