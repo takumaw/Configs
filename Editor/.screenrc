@@ -21,10 +21,6 @@ caption splitonly "%3n %t %f"
 pow_detach_msg "Screen session of $LOGNAME $:cr:$:nl:ended."
 
 
-#defencoding UTF-8
-#defcharset UTF-8
-#defutf8 on
-
 # Keybindings
 #
 
