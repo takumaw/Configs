@@ -303,13 +303,14 @@ fi
 #
 
 include_files=(
-  ~/.zsh.d/zshrc/*(.N)
-  ~/.zshrc.*(.N)
-  ~/.zshrc_*(.N)
-  ~/.zshrc-*(.N)
+  ~/.zsh.d/zshrc/*(-.N)
+  ~/.zshrc.*(-.N)
+  ~/.zshrc_*(-.N)
+  ~/.zshrc-*(-.N)
 )
 
 for include_file in $include_files
 do
     source $include_file
 done
+
