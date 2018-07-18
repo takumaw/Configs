@@ -72,41 +72,6 @@ done
 # Development Tools
 #
 
-# typeset -TU LIBRARY_PATH library_path
-# library_path=(
-#   ~/.local/lib
-#   $library_path
-# )
-# export LIBRARY_PATH
-
-# typeset -TU LD_LIBRARY_PATH ld_library_path
-# ld_library_path=(
-#   ~/.local/lib
-#   $ld_library_path
-# )
-# export LD_LIBRARY_PATH
-
-# typeset -TU INCLUDE_PATH include_path
-# include_path=(
-#   ~/.local/include
-#   $include_path
-# )
-# export INCLUDE_PATH
-
-# typeset -TU C_INCLUDE_PATH c_include_path
-# c_include_path=(
-#   ~/.local/include
-#   $c_include_path
-# )
-# export C_INCLUDE_PATH
-
-# typeset -TU CPLUS_INCLUDE_PATH cplus_include_path
-# cplus_include_path=(
-#   ~/.local/include
-#   $cplus_include_path
-# )
-# export CPLUS_INCLUDE_PATH
-
 if (type python3 || type python2 || type python) &> /dev/null
 then
   export PYTHONIOENCODING=UTF-8
@@ -146,4 +111,3 @@ for include_file in $include_files
 do
   source $include_file
 done
-
