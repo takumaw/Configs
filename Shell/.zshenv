@@ -7,13 +7,13 @@
 # Global
 #
 
-if [[ ! $OSTYPE =~ "darwin" ]]
-then
-  unsetopt GLOBAL_RCS
-  emulate -L ksh
-  source /etc/profile
-  emulate zsh
-fi
+#if [[ ! $OSTYPE =~ "darwin" ]]
+#then
+#  unsetopt GLOBAL_RCS
+#  emulate -L ksh
+#  source /etc/profile
+#  emulate zsh
+#fi
 
 
 #
@@ -136,13 +136,14 @@ fi
 #
 
 include_files=(
-  ~/.zsh.d/zshenv/*(.N)
-  ~/.zshenv.*(.N)
-  ~/.zshenv_*(.N)
-  ~/.zshenv-*(.N)
+  ~/.zsh.d/zshenv/*(-.N)
+  ~/.zshenv.*(-.N)
+  ~/.zshenv_*(-.N)
+  ~/.zshenv-*(-.N)
 )
 
 for include_file in $include_files
 do
   source $include_file
 done
+
