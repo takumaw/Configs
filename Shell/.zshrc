@@ -288,6 +288,11 @@ then
   fi
 fi
 
+if (type svn && type colorsvn) &> /dev/null
+then
+  alias svn=colorsvn
+fi
+
 if type python3 &> /dev/null
 then
   alias python=python3
