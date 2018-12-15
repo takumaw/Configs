@@ -1,13 +1,23 @@
+#
+# .gitignore
+# https://git-scm.com/docs/git-config
+#
 [core]
-	excludesFile = /Users/takumaw/.gitignore_global
+	excludesFile = ~/.gitignore_global
+	attributesFile = ~/.gitattributes_global
 [user]
 	name = Takuma Watanabe
 	email = takumaw@sfo.kuramae.ne.jp
 	signingKey = 0CC49C7EF2A82A0BA7424758A6B2264573065648
 [commit]
 	gpgSign = true
-	template = /Users/takumaw/.stCommitMsg
+[fetch]
+	prune = true
+[push]
+	followTags = true
 [status]
+	branch = true
+	showStash = true
 	showUntrackedFiles = all
 [transfer]
 	fsckObjects = true
