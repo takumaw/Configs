@@ -177,10 +177,10 @@ darwin*)
   function pbpushd() { pwd | pbcopy; cd $@ }
   alias pbcd=pbpopd
 
-  if brew command command-not-found-init &> /dev/null
-  then
-    eval "$(brew command-not-found-init)"
-  fi
+  #if brew command command-not-found-init &> /dev/null
+  #then
+  #  eval "$(brew command-not-found-init)"
+  #fi
   ;;
 linux*)
   alias ll="ls -lhAF --color"
@@ -282,14 +282,14 @@ fi
 # Includes
 #
 
-include_files=(
-  ~/.zsh.d/zshrc/*(-.N)
-  ~/.zshrc.*(-.N)
-  ~/.zshrc_*(-.N)
-  ~/.zshrc-*(-.N)
-)
+# include_files=(
+#   ~/.zsh.d/zshrc/*(-.N)
+#   ~/.zshrc.*(-.N)
+#   ~/.zshrc_*(-.N)
+#   ~/.zshrc-*(-.N)
+# )
 
-for include_file in $include_files
-do
-    source $include_file
-done
+# for include_file in $include_files
+# do
+#     source $include_file
+# done
