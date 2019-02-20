@@ -12,12 +12,6 @@ then
   export PYTHONIOENCODING=UTF-8
 fi
 
-if type go &> /dev/null
-then
-  export GOPATH=~/.go
-  path=($GOPATH/bin $path)
-fi
-
 if type java &> /dev/null
 then
   if type /usr/libexec/java_home &> /dev/null
