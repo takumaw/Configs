@@ -55,7 +55,7 @@ c = get_config()
 #------------------------------------------------------------------------------
 
 # The number of additional ports to try if the specified port is not available.
-# c.NotebookApp.port_retries = 50
+c.NotebookApp.port_retries = 0
 
 # Extra variables to supply to jinja templates when rendering.
 # c.NotebookApp.jinja_template_vars = traitlets.Undefined
@@ -102,7 +102,7 @@ c = get_config()
 # Use '*' to allow any origin to access your server.
 # 
 # Takes precedence over allow_origin_pat.
-# c.NotebookApp.allow_origin = ''
+c.NotebookApp.allow_origin = 'https://colab.research.google.com'
 
 # The notebook manager class to use.
 # c.NotebookApp.contents_manager_class = <class 'notebook.services.contents.filemanager.FileContentsManager'>
@@ -526,6 +526,3 @@ if os.path.isfile(MY_PASSWD_FILE):
 #------------------------------------------------------------------------------
 # User Config 
 #------------------------------------------------------------------------------
-
-c.NotebookApp.server_extensions.append('ipyparallel.nbextension')
-
