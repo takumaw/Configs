@@ -139,7 +139,7 @@ if os.path.isfile(MY_CERT_FILE):
 # c.NotebookApp.tornado_settings = traitlets.Undefined
 
 # The directory to use for notebooks and kernels.
-c.NotebookApp.notebook_dir = os.path.abspath(os.path.expanduser(u'~/IPython Notebooks'))
+c.NotebookApp.notebook_dir = os.path.abspath(os.path.expanduser(u'~/'))
 
 # The kernel manager class to use.
 # c.NotebookApp.kernel_manager_class = <class 'notebook.services.kernels.kernelmanager.MappingKernelManager'>
