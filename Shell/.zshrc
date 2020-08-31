@@ -264,6 +264,10 @@ cygwin*)
   ;;
 esac
 
+if [[ -x /mnt/c/Windows/System32/cmd.exe ]]
+then
+  alias open="cmd.exe /c start"
+fi
 
 #
 # Developing-related
