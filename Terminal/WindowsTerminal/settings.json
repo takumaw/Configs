@@ -57,7 +57,8 @@
                 "hidden": false,
                 "name": "Ubuntu",
                 "source": "Windows.Terminal.Wsl",
-				"cursorShape": "filledBox"
+                "cursorShape": "filledBox",
+                "startingDirectory": "//wsl$/Ubuntu/home/takumaw"
             }
         ]
     },
