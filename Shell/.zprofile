@@ -24,6 +24,11 @@ then
   fi
 fi
 
+if (type cabal) &> /dev/null
+then
+  export PATH=~/.cabal/bin:$PATH
+fi
+
 
 #
 # Includes
