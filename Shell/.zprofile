@@ -29,6 +29,10 @@ then
   export PATH=~/.cabal/bin:$PATH
 fi
 
+if (type go) &> /dev/null
+then
+  export PATH=~/go/bin:$PATH
+fi
 
 #
 # Includes
