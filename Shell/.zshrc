@@ -266,7 +266,7 @@ esac
 
 if [[ -x /mnt/c/Windows/System32/cmd.exe ]]
 then
-  alias open="cmd.exe /c start"
+  alias open=wslview
 fi
 
 #
