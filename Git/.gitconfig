@@ -9,6 +9,8 @@
 	name = Takuma Watanabe
 	email = takumaw@sfo.kuramae.ne.jp
 	signingKey = 0CC49C7EF2A82A0BA7424758A6B2264573065648
+[init]
+	defaultBranch = main
 [commit]
 	gpgSign = true
 [fetch]
