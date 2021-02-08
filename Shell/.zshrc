@@ -126,7 +126,7 @@ bindkey "^[[B" history-beginning-search-forward-end
 setopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS
 
-alias sudo='sudo ' # make aliases work with sudo
+alias sudo='sudo -E ' # make aliases work with sudo
 alias rm="rm -vi"
 alias mv="mv -vi"
 alias cp="cp -vi"
