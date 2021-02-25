@@ -223,19 +223,6 @@ darwin*)
     alias open=gnome-open
   fi
   ;;
-solaris*)
-  alias ll="ls -lhAF -G"
-  function chpwd() { ls -G }
-  alias pp="ps -A -o user,pid,pcpu,vsz,nice,s,tty,args"
-
-  if type xdg-open &> /dev/null
-  then
-    alias open=xdg-open
-  elif type gnome-open &> /dev/null
-  then
-    alias open=gnome-open
-  fi
-  ;;
 *)
   alias ll="ls -lhAF"
   function chpwd() { ls }
