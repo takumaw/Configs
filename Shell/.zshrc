@@ -169,20 +169,6 @@ esac
 #
 
 case $OSTYPE in
-darwin*)
-  alias ll="ls -lhAF -G"
-  function chpwd() { ls -G }
-  alias pp="ps -A -w -o user,pid,%cpu,vsz,nice,stat,tty,command"
-
-  function pbpopd() { cd "`pbpaste`" }
-  function pbpushd() { pwd | pbcopy; cd $@ }
-  alias pbcd=pbpopd
-
-  #if brew command command-not-found-init &> /dev/null
-  #then
-  #  eval "$(brew command-not-found-init)"
-  #fi
-  ;;
 linux*)
   alias ll="ls -lhAF --color"
   function chpwd() { ls --color }
@@ -209,6 +195,20 @@ linux*)
   then
     source /etc/zsh_command_not_found &> /dev/null
   fi
+  ;;
+darwin*)
+  alias ll="ls -lhAF -G"
+  function chpwd() { ls -G }
+  alias pp="ps -A -w -o user,pid,%cpu,vsz,nice,stat,tty,command"
+
+  function pbpopd() { cd "`pbpaste`" }
+  function pbpushd() { pwd | pbcopy; cd $@ }
+  alias pbcd=pbpopd
+
+  #if brew command command-not-found-init &> /dev/null
+  #then
+  #  eval "$(brew command-not-found-init)"
+  #fi
   ;;
 *bsd)
   alias ll="ls -lhAF -G"
