@@ -236,27 +236,6 @@ solaris*)
     alias open=gnome-open
   fi
   ;;
-cygwin*)
-  alias ll="ls -lhAF --color"
-  function chpwd() { ls --color }
-  alias pp="ps -A -w -o user,pid,%cpu,vsz,nice,stat,tty,command"
-
-  alias open=cygstart
-  alias sudo="cygstart --action=runas"
-
-  if type cocot &> /dev/null
-  then
-    alias ping="cocot /cygdrive/c/Windows/System32/PING.EXE"
-    alias ipconfig="cocot /cygdrive/c/Windows/System32/ipconfig.exe"
-    alias netstat="cocot /cygdrive/c/Windows/System32/NETSTAT.EXE"
-    alias netsh="cocot /cygdrive/c/Windows/System32/netsh.exe"
-    alias nslookup="cocot /cygdrive/c/Windows/System32/nslookup.exe"
-    alias traceroute="cocot /cygdrive/c/Windows/System32/tracert.exe"
-    alias route="cocot /cygdrive/c/Windows/System32/ROUTE.EXE"
-    alias arp="cocot /cygdrive/c/Windows/System32/ARP.EXE"
-    alias cscript="cocot /cygdrive/c/Windows/System32/cscript.exe"
-  fi
-  ;;
 *)
   alias ll="ls -lhAF"
   function chpwd() { ls }
