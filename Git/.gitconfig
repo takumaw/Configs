@@ -25,7 +25,7 @@
 [pull]
     rebase = true
 [push]
-    default = upstream
+    default = simple
     followTags = true
 [status]
     branch = true
