@@ -2,31 +2,41 @@
 # .gitconfig
 # https://git-scm.com/docs/git-config
 #
-[core]
-	excludesFile = ~/.gitignore_global
-	attributesFile = ~/.gitattributes_global
 [user]
-	name = Takuma Watanabe
-	email = takumaw@sfo.kuramae.ne.jp
-	signingKey = 0CC49C7EF2A82A0BA7424758A6B2264573065648
+    name = Takuma Watanabe
+    email = takumaw@sfo.kuramae.ne.jp
+    signingKey = 0CC49C7EF2A82A0BA7424758A6B2264573065648
+[core]
+    excludesFile = ~/.gitignore_global
+    attributesFile = ~/.gitattributes_global
+    precomposeUnicode = true
 [init]
-	defaultBranch = main
+    defaultBranch = main
 [commit]
-	gpgSign = true
-[fetch]
-	prune = true
-[pull]
-	rebase = false
-[push]
-	followTags = true
-[status]
-	branch = true
-	showStash = true
-	showUntrackedFiles = all
+    gpgSign = true
+[tag]
+    gpgSign = true
 [transfer]
-	fsckObjects = true
+    fsckObjects = true
+[fetch]
+    prune = true
+    pruneTags = true
+    parallel = 0
+[pull]
+    rebase = true
+[push]
+    default = upstream
+    followTags = true
+[status]
+    branch = true
+    showStash = true
+    showUntrackedFiles = all
+[log]
+    date = iso
+[diff]
+    mnemonicPrefix = true
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
