@@ -132,8 +132,9 @@ alias mv="mv -vi"
 alias cp="cp -vi"
 alias untar="tar -vxf"
 function mktar () { tar -vczf $@[-1] $@[1,-2] }
-alias rsync="rsync -v --progress -a --inplace --append --partial"
 function unzipjp () { unzip -O ms932 $@ }
+function mkzip () { zip -v -x .DS_Store -x desktop.ini $@[-1] $@[1,-2] }
+alias rsync="rsync -v --progress -a --inplace --append --partial"
 
 
 #
