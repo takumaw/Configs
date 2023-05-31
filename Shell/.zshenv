@@ -4,19 +4,6 @@
 
 
 #
-# Global
-#
-
-#if [[ ! $OSTYPE =~ "darwin" ]]
-#then
-#  unsetopt GLOBAL_RCS
-#  emulate -L ksh
-#  source /etc/profile
-#  emulate zsh
-#fi
-
-
-#
 # Paths
 #
 
