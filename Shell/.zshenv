@@ -19,16 +19,6 @@ manpath=(
   $manpath
 )
 
-typeset -U fpath
-fpath=(
-  /usr/local/share/zsh/site-functions(/N)
-  /usr/local/share/zsh/vendor-completions(/N)
-  /usr/local/share/zsh-completions(/N)
-  /usr/share/zsh/site-functions(/N)
-  /usr/share/zsh/vendor-completions(/N)
-  $fpath
-)
-
 
 #
 # Includes

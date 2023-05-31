@@ -86,6 +86,21 @@ export LS_COLORS
 # http://zsh.sourceforge.net/Doc/Release/Completion-System.html
 #
 
+typeset -U fpath
+fpath=(
+  ~/.local/share/zsh/site-functions(/N)
+  ~/.local/share/zsh/vendor-completions(/N)
+  ~/.local/share/zsh/zsh-completions(/N)
+  /opt/homebrew/share/zsh/site-functions(/N)
+  /usr/local/share/zsh/site-functions(/N)
+  /usr/local/share/zsh/vendor-completions(/N)
+  /usr/local/share/zsh-completions(/N)
+  /usr/share/zsh/site-functions(/N)
+  /usr/share/zsh/vendor-completions(/N)
+  /usr/share/zsh/zsh-completions(/N)
+  $fpath
+)
+
 setopt AUTO_REMOVE_SLASH
 setopt GLOB_COMPLETE
 unsetopt LIST_BEEP
