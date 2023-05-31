@@ -118,13 +118,18 @@ bindkey "^[[B" history-beginning-search-forward-end
 
 
 #
-# Commands and Aliases
+# Working Directory
 #
 # http://zsh.sourceforge.net/Doc/Release/Options.html#Changing-Directories
 #
 
 setopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS
+
+
+#
+# Commands and Aliases
+#
 
 alias sudo='sudo -E ' # make aliases work with sudo
 alias rm="rm -vi"
