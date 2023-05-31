@@ -31,31 +31,6 @@ fpath=(
 
 
 #
-# Locale
-#
-
-locales=`/usr/bin/locale -a`
-LOLALE_PREFERENCES=(
-  "ja_JP.UTF-8"
-  "ja_JP.UTF8"
-  "en_US.UTF-8"
-  "en_US.UTF8"
-  "C"
-)
-
-for LOLALE_PREFERENCE in $LOLALE_PREFERENCES
-do
-  if echo $locales | grep -i $LOLALE_PREFERENCE &> /dev/null
-  then
-    export LANG=$LOLALE_PREFERENCE
-    export LANGUAGE=`echo $LOLALE_PREFERENCE | cut -d "_" -f 1`
-    LOCALE_FOUND=1
-    break
-  fi
-done
-
-
-#
 # Includes
 #
 
