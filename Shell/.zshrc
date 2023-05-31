@@ -126,19 +126,25 @@ bindkey "^[[B" history-beginning-search-forward-end
 setopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS
 
+function chpwd() { ls --color }
+
 
 #
 # Commands and Aliases
 #
 
+alias ls="ls --color"
+alias ll="ls --color -lhAF"
+alias ps="ps -w"
+alias pp="ps -A -ww -o user,pid,stat,lstart,%cpu,%mem,vsz,rss,nice,class,tty,command"
 alias sudo='sudo -E ' # make aliases work with sudo
 alias rm="rm -vi"
 alias mv="mv -vi"
 alias cp="cp -vi"
 alias untar="tar -vxf"
 function mktar () { tar -vczf $@[-1] $@[1,-2] }
-function unzipjp () { unzip -O ms932 $@ }
 function mkzip () { zip -v $@[-1] $@[1,-2] }
+function unzipjp () { unzip -O ms932 $@ }
 alias rsync="rsync -v --progress -a --inplace --append --partial"
 
 
@@ -177,10 +183,6 @@ esac
 
 case $OSTYPE in
 linux*)
-  alias ll="ls -lhAF --color"
-  function chpwd() { ls --color }
-  alias pp="ps -A -w -o user,pid,%cpu,vsz,nice,stat,tty,command"
-
   if type xdg-open &> /dev/null
   then
     alias open=xdg-open
@@ -204,10 +206,6 @@ linux*)
   fi
   ;;
 darwin*)
-  alias ll="ls -lhAF -G"
-  function chpwd() { ls -G }
-  alias pp="ps -A -w -o user,pid,%cpu,vsz,nice,stat,tty,command"
-
   function pbpopd() { cd "`pbpaste`" }
   function pbpushd() { pwd | pbcopy; cd $@ }
   alias pbcd=pbpopd
@@ -221,9 +219,9 @@ darwin*)
   fi
   ;;
 *bsd)
-  alias ll="ls -lhAF -G"
+  alias ls="ls -G"
+  alias ll="ls -G -lhAF"
   function chpwd() { ls -G }
-  alias pp="ps -A -o user,pid,pcpu,vsz,nice,s,tty,args"
 
   if type xdg-open &> /dev/null
   then
@@ -234,9 +232,6 @@ darwin*)
   fi
   ;;
 *)
-  alias ll="ls -lhAF"
-  function chpwd() { ls }
-  alias pp="ps -A -o user,pid,pcpu,vsz,nice,s,tty,args"
   ;;
 esac
 
@@ -245,19 +240,6 @@ then
   export WSL_VERSION=$(wsl.exe -l -v | grep -a '[*]' | sed 's/[^0-9]*//g')   
   export WSL_HOST=$(tail -1 /etc/resolv.conf | cut -d' ' -f2)
   alias open=wslview
-fi
-
-#
-# Developing-related
-#
-
-if type python3 &> /dev/null
-then
-  alias python=python3
-  alias pydoc=pydoc3
-  alias pip=pip3
-  alias idle=idle3
-  alias ipython=ipython3
 fi
 
 
