@@ -7,9 +7,14 @@
 # Development Tools
 #
 
-if (type python3 || type python2 || type python) &> /dev/null
+if type python3 &> /dev/null
 then
   export PYTHONIOENCODING=UTF-8
+  alias python=python3
+  alias pydoc=pydoc3
+  alias pip=pip3
+  alias idle=idle3
+  alias ipython=ipython3
   if (type pyenv || type ~/.pyenv/bin/pyenv) &> /dev/null
   then
     export PYENV_ROOT="$HOME/.pyenv"
@@ -51,6 +56,7 @@ then
   alias docker-compose="docker compose"
   function podman-run-here () { podman run -v $(pwd):$(pwd) -w $(pwd) $@ }
 fi
+
 
 #
 # Includes
