@@ -259,7 +259,8 @@ linux*)
   elif type gnome-open &> /dev/null
   then
     alias open=gnome-open
-  elif type wslview &> /dev/null
+  fi
+  if type wslview &> /dev/null
   then
     alias open=wslview
   fi
@@ -270,6 +271,14 @@ linux*)
     alias pbpaste='xsel --clipboard --output'
     function pbpopd() { cd `pbpaste` }
     function pbpushd() { pwd | pbcopy; cd $@ }
+    alias pbcd=pbpopd
+  fi
+  if type wsl.exe &> /dev/null
+  then
+    function pbcopy() { cat | clip.exe }
+    alias pbpaste='powershell.exe -c Get-Clipboard'
+    function pbpopd() { cd `pbpaste` }
+    function pbpushd() { pwd | clip.exe; cd $@ }
     alias pbcd=pbpopd
   fi
 
