@@ -4,61 +4,6 @@
 
 
 #
-# Development Tools
-#
-
-if type python3 &> /dev/null
-then
-  export PYTHONIOENCODING=UTF-8
-  alias python=python3
-  alias pydoc=pydoc3
-  alias pip=pip3
-  alias idle=idle3
-  alias ipython=ipython3
-  if (type pyenv || type ~/.pyenv/bin/pyenv) &> /dev/null
-  then
-    export PYENV_ROOT="$HOME/.pyenv"
-    export PATH="$PYENV_ROOT/bin:$PATH"
-    #eval "$(pyenv init -)"
-  fi
-fi
-
-if type java &> /dev/null
-then
-  if type /usr/libexec/java_home &> /dev/null
-  then
-    # macOS
-    export JAVA_HOME=`/usr/libexec/java_home`
-  else
-    # Others
-    export JAVA_HOME=$(dirname $(dirname $(readlink -f /usr/bin/java)))
-  fi
-fi
-
-if (type cabal) &> /dev/null
-then
-  export PATH=~/.cabal/bin:$PATH
-fi
-
-if (type go) &> /dev/null
-then
-  export PATH=~/go/bin:$PATH
-fi
-
-if (type docker) &> /dev/null
-then
-  alias docker-compose="docker compose"
-  function docker-run-here () { docker run -v $(pwd):$(pwd) -w $(pwd) $@ }
-fi
-
-if (type podman) &> /dev/null
-then
-  alias docker-compose="docker compose"
-  function podman-run-here () { podman run -v $(pwd):$(pwd) -w $(pwd) $@ }
-fi
-
-
-#
 # Includes
 #
 
