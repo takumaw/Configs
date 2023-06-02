@@ -259,6 +259,9 @@ linux*)
   elif type gnome-open &> /dev/null
   then
     alias open=gnome-open
+  elif type wslview &> /dev/null
+  then
+    alias open=wslview
   fi
 
   if type xsel &> /dev/null
@@ -305,12 +308,11 @@ darwin*)
   ;;
 esac
 
-if [[ -x /mnt/c/Windows/System32/cmd.exe ]]
-then
-  export WSL_VERSION=$(wsl.exe -l -v | grep -a '[*]' | sed 's/[^0-9]*//g')   
-  export WSL_HOST=$(tail -1 /etc/resolv.conf | cut -d' ' -f2)
-  alias open=wslview
-fi
+#if type wsl.exe &> /dev/null
+#then
+#  export WSL_VERSION=$(wsl.exe -l -v | grep -a '[*]' | sed 's/[^0-9]*//g')   
+#  export WSL_HOST=$(tail -1 /etc/resolv.conf | cut -d' ' -f2)
+#fi
 
 
 #
