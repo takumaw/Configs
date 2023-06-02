@@ -273,10 +273,10 @@ linux*)
     alias pbcd=pbpopd
   fi
 
-  if [ -f /etc/zsh_command_not_found ]
-  then
-    source /etc/zsh_command_not_found &> /dev/null
-  fi
+  #if [ -f /etc/zsh_command_not_found ]
+  #then
+  #  source /etc/zsh_command_not_found &> /dev/null
+  #fi
   ;;
 darwin*)
   function pbpopd() { cd "`pbpaste`" }
