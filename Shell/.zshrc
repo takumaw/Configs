@@ -198,7 +198,7 @@ then
     export PATH="$PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH"
     #eval "$(pyenv init -)"
     export PYENV_SHELL=zsh
-    source $PYENV_ROOT/completions/pyenv.$PYENV_SHELL
+    [ -f $PYENV_ROOT/completions/pyenv.$PYENV_SHELL ] && source $PYENV_ROOT/completions/pyenv.$PYENV_SHELL
     pyenv() {
       local command
       command="${1:-}"
