@@ -195,8 +195,26 @@ then
   if (type pyenv || type ~/.pyenv/bin/pyenv) &> /dev/null
   then
     export PYENV_ROOT="$HOME/.pyenv"
-    export PATH="$PYENV_ROOT/bin:$PATH"
+    export PATH="$PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH"
     #eval "$(pyenv init -)"
+    export PYENV_SHELL=zsh
+    source $PYENV_ROOT/completions/pyenv.$PYENV_SHELL
+    pyenv() {
+      local command
+      command="${1:-}"
+      if [ "$#" -gt 0 ]; then
+        shift
+      fi
+    
+      case "$command" in
+      activate|deactivate|rehash|shell)
+        eval "$(pyenv "sh-$command" "$@")"
+        ;;
+      *)
+        command pyenv "$command" "$@"
+        ;;
+      esac
+    }
   fi
 fi
 
