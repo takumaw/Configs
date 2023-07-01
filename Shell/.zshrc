@@ -170,7 +170,7 @@ alias ps="ps -w"
 alias pp="ps -A -ww -o user,pid,stat,lstart,%cpu,%mem,vsz,rss,nice,class,tty,command"
 
 alias ls="ls --color=always"
-alias ll="ls -lhAF"
+alias ll="ls -lhAF -D '%Y-%m-%d %H:%M:%S'"
 alias cp="cp -vi"
 alias mv="mv -vi"
 alias rm="rm -vi"
