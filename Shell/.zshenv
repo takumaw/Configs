@@ -4,23 +4,6 @@
 
 
 #
-# Paths
-#
-
-typeset -U path
-path=(
-  ~/.local/bin(/N)
-  $path
-)
-
-typeset -U manpath
-manpath=(
-  ~/.local/share/man(/N)
-  $manpath
-)
-
-
-#
 # Includes
 #
 

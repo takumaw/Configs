@@ -197,19 +197,21 @@ then
   function podman-run-here () { podman run -v $(pwd):$(pwd) -w $(pwd) $@ }
 fi
 
+
 #
 # Development Tools
 #
 
 if type python3 &> /dev/null
 then
-  export PYTHONIOENCODING=UTF-8
   alias python=python3
   alias pydoc=pydoc3
   alias pip=pip3
   alias idle=idle3
   alias ipython=ipython3
-  if (type pyenv || type ~/.pyenv/bin/pyenv) &> /dev/null
+  export PATH="$HOME/.local/bin:$PATH"
+  export MANPATH="$HOME/.local/share/man:$MANPATH"
+  if (type pyenv || type $HOME/.pyenv/bin/pyenv) &> /dev/null
   then
     export PYENV_ROOT="$HOME/.pyenv"
     export PATH="$PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH"
@@ -247,16 +249,26 @@ then
   fi
 fi
 
-typeset -U path
-path=(
-  ~/.cargo/bin(/N)
-  ~/go/bin(/N)
-  ~/.cabal/bin(/N)
-  ~/.opam/default/bin(/N)
-  $path
-)
+if type rust &> /dev/null || [ -d $HOME/.cargo/bin ]
+then
+  export PATH="$HOME/.cargo/bin:$PATH"
+fi
 
-alias enable-opam="eval $(opam env)"
+if type go &> /dev/null || [ -d $HOME/go/bin ]
+then
+  export PATH="$HOME/go/bin:$PATH"
+fi
+
+if type cabal &> /dev/null || [ -d $HOME/.cabal/bin ]
+then
+  export PATH="$HOME/.cabal/bin:$PATH"
+fi
+
+if type opam &> /dev/null || [ -d $HOME/.opam/default/bin ]
+then
+  export PATH="$HOME/.opam/default/bin:$PATH"
+  alias opam-env-activate="eval $(opam env)"
+fi
 
 #
 # Terminal-specific
