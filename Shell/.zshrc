@@ -247,16 +247,16 @@ then
   fi
 fi
 
-if (type cabal) &> /dev/null
-then
-  export PATH=~/.cabal/bin:$PATH
-fi
+typeset -U path
+path=(
+  ~/.cargo/bin(/N)
+  ~/go/bin(/N)
+  ~/.cabal/bin(/N)
+  ~/.opam/default/bin(/N)
+  $path
+)
 
-if (type go) &> /dev/null
-then
-  export PATH=~/go/bin:$PATH
-fi
-
+alias enable-opam="eval $(opam env)"
 
 #
 # Terminal-specific
