@@ -183,6 +183,21 @@ export LV="-c"
 
 
 #
+# Containers
+#
+
+if (type docker) &> /dev/null
+then
+  alias docker-compose="docker compose"
+  function docker-run-here () { docker run -v $(pwd):$(pwd) -w $(pwd) $@ }
+fi
+
+if (type podman) &> /dev/null
+then
+  function podman-run-here () { podman run -v $(pwd):$(pwd) -w $(pwd) $@ }
+fi
+
+#
 # Development Tools
 #
 
@@ -240,18 +255,6 @@ fi
 if (type go) &> /dev/null
 then
   export PATH=~/go/bin:$PATH
-fi
-
-if (type docker) &> /dev/null
-then
-  alias docker-compose="docker compose"
-  function docker-run-here () { docker run -v $(pwd):$(pwd) -w $(pwd) $@ }
-fi
-
-if (type podman) &> /dev/null
-then
-  alias docker-compose="docker compose"
-  function podman-run-here () { podman run -v $(pwd):$(pwd) -w $(pwd) $@ }
 fi
 
 
