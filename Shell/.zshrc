@@ -161,7 +161,9 @@ function mktar () { tar -vczf $@[-1] $@[1,-2] }
 function mkzip () { zip -v $@[-1] $@[1,-2] }
 function unzipjp () { unzip -O ms932 $@ }
 alias rsync="rsync -v --progress -a --inplace --append --partial"
-
+alias curl-download="curl --remote-name"
+alias curl-download-parallel="curl --parallel --parallel-immediate"
+alias wget=curl-download
 
 #
 # Viewer & Editor
