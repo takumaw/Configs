@@ -145,73 +145,88 @@ function chpwd() { ls --color }
 
 
 #
-# Commands and Aliases
+# Basic Commands Support
 #
+
+alias sudo='sudo -E ' # make aliases work with sudo
+alias ps="ps -w"
+alias pp="ps -A -ww -o user,pid,stat,lstart,%cpu,%mem,vsz,rss,nice,class,tty,command"
 
 alias ls="ls --color"
 alias ll="ls --color -lhAF"
-alias ps="ps -w"
-alias pp="ps -A -ww -o user,pid,stat,lstart,%cpu,%mem,vsz,rss,nice,class,tty,command"
-alias sudo='sudo -E ' # make aliases work with sudo
-alias rm="rm -vi"
-alias mv="mv -vi"
 alias cp="cp -vi"
+alias mv="mv -vi"
+alias rm="rm -vi"
+
 alias untar="tar -vxf"
 function mktar () { tar -vczf $@[-1] $@[1,-2] }
 function mkzip () { zip -v $@[-1] $@[1,-2] }
 function unzipjp () { unzip -O ms932 $@ }
-alias rsync="rsync -v --progress -a --inplace --append --partial"
-alias curl-download="curl --remote-name"
-alias curl-download-parallel="curl --parallel --parallel-immediate"
-alias wget=curl-download
+
+alias rsync="rsync -vzaP --inplace --append --sparse"
+alias curl-download="curl -OJRL --compressed"
+function wget () {
+  if type -p wget &> /dev/null
+  then
+    command wget $@
+  else
+    echo "!!WARNING!! cURL is used instead."
+    echo
+    curl-download $@
+  fi
+}
 
 #
-# Viewer & Editor
+# Viewers & Editors Support
 #
 
-if type vim &> /dev/null
+export EDITOR=vim
+export PAGER=less
+export LESS="--RAW-CONTROL-CHARS"
+
+alias diff="diff --color=always"
+
+if type -p vim &> /dev/null
 then
   alias vi="vim"
 else
   alias vim="vi"
 fi
 
-export EDITOR=vim
-export PAGER=less
-export LESS="--RAW-CONTROL-CHARS"
-export LV="-c"
-
-
 #
-# Containers
+# Containers Support
 #
 
-if (type docker) &> /dev/null
+if type -p docker &> /dev/null
 then
   alias docker-compose="docker compose"
   function docker-run-here () { docker run -v $(pwd):$(pwd) -w $(pwd) $@ }
 fi
 
-if (type podman) &> /dev/null
+if type -p podman &> /dev/null
 then
   function podman-run-here () { podman run -v $(pwd):$(pwd) -w $(pwd) $@ }
 fi
 
 
 #
-# Development Tools
+# Development Tools Support
 #
 
-if type python3 &> /dev/null
+if type -p python3 &> /dev/null
 then
+  export PATH="$HOME/.local/bin:$PATH"
+  export MANPATH="$HOME/.local/share/man:$MANPATH"
   alias python=python3
   alias pydoc=pydoc3
   alias pip=pip3
+  alias wheel=wheel3
   alias idle=idle3
-  alias ipython=ipython3
-  export PATH="$HOME/.local/bin:$PATH"
-  export MANPATH="$HOME/.local/share/man:$MANPATH"
-  if (type pyenv || type $HOME/.pyenv/bin/pyenv) &> /dev/null
+  if type -p ipython3 &> /dev/null
+  then
+    alias ipython=ipython3
+  fi
+  if (type -p pyenv || type $HOME/.pyenv/bin/pyenv) &> /dev/null
   then
     export PYENV_ROOT="$HOME/.pyenv"
     export PATH="$PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH"
@@ -237,34 +252,34 @@ then
   fi
 fi
 
-if type java &> /dev/null
+if type -p javac &> /dev/null
 then
-  if type /usr/libexec/java_home &> /dev/null
+  if [ -x /usr/libexec/java_home ]
   then
     # macOS
-    export JAVA_HOME=`/usr/libexec/java_home`
+    export JAVA_HOME=$(/usr/libexec/java_home)
   else
-    # Others
-    export JAVA_HOME=$(dirname $(dirname $(readlink -f /usr/bin/java)))
+    # Linux
+    export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which javac))))
   fi
 fi
 
-if type rust &> /dev/null || [ -d $HOME/.cargo/bin ]
+if type -p rustc &> /dev/null || [ -d $HOME/.cargo/bin ]
 then
   export PATH="$HOME/.cargo/bin:$PATH"
 fi
 
-if type go &> /dev/null || [ -d $HOME/go/bin ]
+if type -p go &> /dev/null || [ -d $HOME/go/bin ]
 then
   export PATH="$HOME/go/bin:$PATH"
 fi
 
-if type cabal &> /dev/null || [ -d $HOME/.cabal/bin ]
+if type -p cabal &> /dev/null || [ -d $HOME/.cabal/bin ]
 then
   export PATH="$HOME/.cabal/bin:$PATH"
 fi
 
-if type opam &> /dev/null || [ -d $HOME/.opam/default/bin ]
+if type -p opam &> /dev/null || [ -d $HOME/.opam/default/bin ]
 then
   export PATH="$HOME/.opam/default/bin:$PATH"
   alias opam-env-activate="eval $(opam env)"
@@ -279,6 +294,8 @@ screen*)
   function preexec() { echo -ne "\ek${1%% *}\e\\" }
   function precmd() { echo -ne "\ek${SHELL:t}\e\\" }
   ;;
+*)
+  ;;
 esac
 
 
@@ -288,19 +305,19 @@ esac
 
 case $OSTYPE in
 linux*)
-  if type xdg-open &> /dev/null
+  if type -p xdg-open &> /dev/null
   then
     alias open=xdg-open
-  elif type gnome-open &> /dev/null
+  elif type -p gnome-open &> /dev/null
   then
     alias open=gnome-open
   fi
-  if type wslview &> /dev/null
+  if type -p wslview &> /dev/null
   then
     alias open=wslview
   fi
 
-  if type xsel &> /dev/null
+  if type -p xsel &> /dev/null
   then
     alias pbcopy='xsel --clipboard --input'
     alias pbpaste='xsel --clipboard --output'
@@ -308,7 +325,7 @@ linux*)
     function pbpushd() { pwd | pbcopy; cd $@ }
     alias pbcd=pbpopd
   fi
-  if type wsl.exe &> /dev/null
+  if type -p wsl.exe &> /dev/null
   then
     function pbcopy() { cat | clip.exe }
     alias pbpaste='powershell.exe -c Get-Clipboard'
@@ -340,10 +357,10 @@ darwin*)
   alias ll="ls -G -lhAF"
   function chpwd() { ls -G }
 
-  if type xdg-open &> /dev/null
+  if type -p xdg-open &> /dev/null
   then
     alias open=xdg-open
-  elif type gnome-open &> /dev/null
+  elif type -p gnome-open &> /dev/null
   then
     alias open=gnome-open
   fi
@@ -352,7 +369,7 @@ darwin*)
   ;;
 esac
 
-#if type wsl.exe &> /dev/null
+#if type -p wsl.exe &> /dev/null
 #then
 #  export WSL_VERSION=$(wsl.exe -l -v | grep -a '[*]' | sed 's/[^0-9]*//g')   
 #  export WSL_HOST=$(tail -1 /etc/resolv.conf | cut -d' ' -f2)
