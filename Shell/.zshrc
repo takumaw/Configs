@@ -325,7 +325,7 @@ esac
 
 case $OSTYPE in
 linux*)
-  alias lll="ll --time-format '+%Y-%m-%d %H:%M:%S'"
+  alias lll="ll --time-style '+%Y-%m-%d %H:%M:%S'"
   if type -p xdg-open &> /dev/null
   then
     alias open=xdg-open
