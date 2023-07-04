@@ -170,7 +170,7 @@ alias ps="ps -w"
 alias pp="ps -A -ww -o user,pid,stat,lstart,%cpu,%mem,vsz,rss,nice,class,tty,command"
 
 alias ls="ls --color=always"
-alias ll="ls -lhAF -D '%Y-%m-%d %H:%M:%S'"
+alias ll="ls -lhAF"
 alias cp="cp -vi"
 alias mv="mv -vi"
 alias rm="rm -vi"
@@ -325,6 +325,7 @@ esac
 
 case $OSTYPE in
 linux*)
+  alias lll="ll --time-format '+%Y-%m-%d %H:%M:%S'"
   if type -p xdg-open &> /dev/null
   then
     alias open=xdg-open
@@ -360,6 +361,7 @@ linux*)
   #fi
   ;;
 darwin*)
+  alias lll="ll -D '%Y-%m-%d %H:%M:%S'"
   function pbpopd() { cd "`pbpaste`" }
   function pbpushd() { pwd | pbcopy; cd $@ }
   alias pbcd=pbpopd
@@ -373,8 +375,7 @@ darwin*)
   #fi
   ;;
 *bsd)
-  alias ls="ls -G"
-  alias ll="ls -G -lhAF"
+  alias lll="ll -D '%Y-%m-%d %H:%M:%S'"
   function chpwd() { ls -G }
 
   if type -p xdg-open &> /dev/null
