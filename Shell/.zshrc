@@ -374,18 +374,6 @@ darwin*)
   #  fi
   #fi
   ;;
-*bsd)
-  alias lll="ll -D '%Y-%m-%d %H:%M:%S'"
-  function chpwd() { ls -G }
-
-  if type -p xdg-open &> /dev/null
-  then
-    alias open=xdg-open
-  elif type -p gnome-open &> /dev/null
-  then
-    alias open=gnome-open
-  fi
-  ;;
 *)
   ;;
 esac
