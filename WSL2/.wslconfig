@@ -1,0 +1,17 @@
+#
+# .wslconfig
+#
+# https://learn.microsoft.com/en-us/windows/wsl/wsl-config
+#
+
+[wsl2]
+
+# prevent WSL2 from eating up memory
+memory=8GB
+
+# keep WSL2 running
+vmIdleTimeout=-1
+
+# Workaround for Docker Images requiring vsyscall
+# https://github.com/microsoft/WSL/issues/4694
+kernelCommandLine = vsyscall=emulate
