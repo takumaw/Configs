@@ -169,6 +169,9 @@ alias sudo='sudo -E ' # make aliases work with sudo
 alias ps="ps -w"
 alias pp="ps -A -ww -o user,pid,stat,lstart,%cpu,%mem,vsz,rss,nice,class,tty,command"
 
+alias lsof-long="lsof +c 0"
+alias lsof-ports="lsof-long -i -n -P"
+
 alias ls="ls --color=always"
 alias ll="ls -lhAF"
 alias cp="cp -vi"
