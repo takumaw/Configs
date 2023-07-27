@@ -177,6 +177,11 @@ alias ll="ls -lhAF"
 alias cp="cp -vi"
 alias mv="mv -vi"
 alias rm="rm -vi"
+alias chown="chown -v"
+alias chgrp="chgrp -v"
+alias chmod="chmod -v"
+alias chcon="chcon -v"
+alias chattr="chattr -V"
 
 alias untar="tar -vxf"
 function mktar () { tar -vczf $@[-1] $@[1,-2] }
