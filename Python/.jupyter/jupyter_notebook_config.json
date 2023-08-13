@@ -1,7 +1,0 @@
-{
-  "NotebookApp": {
-    "nbserver_extensions": {
-      "jupyter_http_over_ws": true
-    }
-  }
-}
