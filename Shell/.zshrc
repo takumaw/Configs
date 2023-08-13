@@ -177,6 +177,9 @@ alias ll="ls -lhAF"
 alias cp="cp -vi"
 alias mv="mv -vi"
 alias rm="rm -vi"
+alias ln="ln -viw"
+alias mkdir="mkdir -v"
+alias rmdir="rmdir -v"
 alias chown="chown -v"
 alias chgrp="chgrp -v"
 alias chmod="chmod -v"
@@ -363,6 +366,13 @@ linux*)
     alias pbcd=pbpopd
   fi
 
+  #if [ -d "~/.linuxbrew" ]
+  #then
+  #  eval "$(~/.linuxbrew/bin/brew shellenv)"
+  #elif [ -d "/home/linuxbrew" ]
+  #then
+  #  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  #fi
   #if [ -f /etc/zsh_command_not_found ]
   #then
   #  source /etc/zsh_command_not_found &> /dev/null
@@ -374,6 +384,10 @@ darwin*)
   function pbpushd() { pwd | pbcopy; cd $@ }
   alias pbcd=pbpopd
 
+  #if [ -d "/opt/homebrew" ]
+  #then
+  #  eval "$(/opt/homebrew/bin/brew shellenv)"
+  #fi
   #if [ -f /opt/homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.sh ]
   #then
   #  HB_CNF_HANDLER="/opt/homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"
