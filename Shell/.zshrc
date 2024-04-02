@@ -191,7 +191,7 @@ function mktar () { tar -vczf $@[-1] $@[1,-2] }
 function mkzip () { zip -v $@[-1] $@[1,-2] }
 function unzipjp () { unzip -O ms932 $@ }
 
-alias rsync="rsync -vzaP --inplace --append --sparse"
+alias rsync="rsync -vzaP --inplace --append"
 alias curl-download="curl -OJRL --compressed"
 function wget () {
   if type -p wget &> /dev/null
