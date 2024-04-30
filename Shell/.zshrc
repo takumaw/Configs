@@ -288,7 +288,7 @@ then
   if [ -x /usr/libexec/java_home ]
   then
     # macOS
-    export JAVA_HOME=$(/usr/libexec/java_home)
+    JAVA_HOME=$(/usr/libexec/java_home 2> /dev/null)
   else
     # Linux
     export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which javac))))
