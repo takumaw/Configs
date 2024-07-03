@@ -6,8 +6,8 @@
 
 [wsl2]
 
-# prevent WSL2 from eating up memory
-memory=8GB
+# Prevent WSL2 from eating up memory
+memory = 8GB
 
 # Workaround for Docker Images requiring vsyscall
 # https://github.com/microsoft/WSL/issues/4694
