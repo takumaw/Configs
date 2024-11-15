@@ -198,7 +198,7 @@ function wget () {
   then
     command wget $@
   else
-    echo "!!WARNING!! cURL is used instead."
+    echo "WARNING: cURL is used instead."
     echo
     curl-download $@
   fi
@@ -313,7 +313,7 @@ fi
 if type -p opam &> /dev/null || [ -d $HOME/.opam/default/bin ]
 then
   export PATH="$HOME/.opam/default/bin:$PATH"
-  alias opam-env-activate="eval $(opam env)"
+  alias opam-activate="eval $(opam env)"
 fi
 
 #
