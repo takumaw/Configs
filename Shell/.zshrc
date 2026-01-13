@@ -192,15 +192,24 @@ function mkzip () { zip -v $@[-1] $@[1,-2] }
 function unzipjp () { unzip -O ms932 $@ }
 
 alias rsync="rsync -vzaP --inplace --append"
-alias curl-download="curl -fgOJRLZ --compressed --retry 5 --no-clobber"
+function wcurl () {
+  if type -p wcurl &> /dev/null
+  then
+    command wcurl $@
+  else
+    echo "WARNING: wcurl not found; use raw cURL instead."
+    echo
+    curl -fgOJRLZ --compressed --retry 5 --no-clobber $@
+  fi
+}
 function wget () {
   if type -p wget &> /dev/null
   then
     command wget $@
   else
-    echo "WARNING: cURL is used instead."
+    echo "WARNING: wget not found; cURL is used instead."
     echo
-    curl-download $@
+    wcurl $@
   fi
 }
 
