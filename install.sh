@@ -5,6 +5,8 @@
 # See also: https://dotfiles.github.io/tutorials/
 #
 
+set -eEu -o pipefail
+
 # Save the repository path
 REPO_DIR=${PWD#"$HOME"/}
 
