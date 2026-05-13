@@ -24,3 +24,6 @@ ln -s ${REPO_DIR}/Shell/.zshrc
 
 ln -s ${REPO_DIR}/SSH .ssh
 chmod 600 .ssh/*
+
+mkdir -p .claude
+ln -s ${REPO_DIR}/Claude/CLAUDE.md .claude/CLAUDE.md
