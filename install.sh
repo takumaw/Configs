@@ -27,7 +27,7 @@ symlink ${REPO_DIR}/Git/.gitignore_global .gitignore_global
 symlink ${REPO_DIR}/Shell/.zshrc .zshrc
 
 symlink ${REPO_DIR}/SSH .ssh
-# chmod 600 .ssh/*
+chmod 700 ${REPO_DIR}/SSH
 
 mkdir -p .claude
 symlink ${REPO_DIR}/Claude/CLAUDE.md .claude/CLAUDE.md
