@@ -13,17 +13,21 @@ REPO_DIR=${PWD#"$HOME"/}
 # Move to the home directory
 cd ${HOME}
 
+symlink() {
+    [[ -e "$2" || -L "$2" ]] || ln -s "$1" "$2"
+}
+
 # Create symlinks
-ln -s ${REPO_DIR}/Editor/.screenrc
-ln -s ${REPO_DIR}/Editor/.vimrc
+symlink ${REPO_DIR}/Editor/.screenrc .screenrc
+symlink ${REPO_DIR}/Editor/.vimrc .vimrc
 
-ln -s ${REPO_DIR}/Git/.gitconfig
-ln -s ${REPO_DIR}/Git/.gitignore_global
+symlink ${REPO_DIR}/Git/.gitconfig .gitconfig
+symlink ${REPO_DIR}/Git/.gitignore_global .gitignore_global
 
-ln -s ${REPO_DIR}/Shell/.zshrc
+symlink ${REPO_DIR}/Shell/.zshrc .zshrc
 
-ln -s ${REPO_DIR}/SSH .ssh
-chmod 600 .ssh/*
+symlink ${REPO_DIR}/SSH .ssh
+# chmod 600 .ssh/*
 
 mkdir -p .claude
-ln -s ${REPO_DIR}/Claude/CLAUDE.md .claude/CLAUDE.md
+symlink ${REPO_DIR}/Claude/CLAUDE.md .claude/CLAUDE.md
