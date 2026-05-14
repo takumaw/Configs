@@ -8,7 +8,6 @@
     signingKey = 0CC49C7EF2A82A0BA7424758A6B2264573065648
 [core]
     excludesFile = ~/.gitignore_global
-    attributesFile = ~/.gitattributes_global
     precomposeUnicode = true
 [init]
     defaultBranch = main
